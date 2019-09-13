@@ -29,7 +29,7 @@
             <!--  -->
 
             <v-text-field label="Report Subject" v-model="post.report" required :error="!!errors.report" :error-messages="errors.report"></v-text-field>
-            <v-select label="Country" v-model="post.country_id" :items="countries" item-value="id" item-text="name" required :error="!!errors.country_id" :error-messages="errors.country_id"></v-select>
+            <v-autocomplete label="Country" v-model="post.country_id" :items="countries" item-value="id" item-text="name" required :error="!!errors.country_id" :error-messages="errors.country_id"></v-autocomplete>
             <v-text-field label="Phone" v-model="post.phone" v-mask="'+1 (###) ###-####'" required :error="!!errors.phone" :error-messages="errors.phone"></v-text-field>
             <v-text-field label="Email" v-model="post.email" required :error="!!errors.email" :error-messages="errors.email"></v-text-field>
             <div class="navigate text-right">
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+    import axios from 'axios';
     import { mask } from 'vue-the-mask'
 
     export default {
@@ -59,16 +60,7 @@
                     phone: null,
                     email: null
                 },
-                countries: [
-                    {
-                        id: 1,
-                        name: 'United States'
-                    },
-                    {
-                        id: 2,
-                        name: 'Ukraine'
-                    },
-                ]
+                countries: []
             }
         },
         computed: {
@@ -80,10 +72,21 @@
             }
         },
         created() {
-            this.loadData();
+            this.loadCountries();
+            this.loadFormData();
         },
         methods: {
-            loadData() {
+            loadCountries() {
+                axios.get(`/api/countries`)
+                    .then((response) => {
+                        console.log(response);
+                        this.countries = response.data;
+                    })
+                    .catch(error => {
+                        console.log(error.response);
+                    });
+            },
+            loadFormData() {
                 Object.keys(this.post).forEach((key) => this.post[key] = this.member[key]);
             }
         }

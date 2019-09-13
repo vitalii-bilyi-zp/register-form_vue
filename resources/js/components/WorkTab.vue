@@ -4,7 +4,7 @@
             <v-text-field label="Company" v-model="post.company"></v-text-field>
             <v-text-field label="Position" v-model="post.position"></v-text-field>
             <v-textarea label="About Me" v-model="post.about"></v-textarea>
-            <v-file-input label="Add Photo" v-model="post.photo" prepend-icon="" append-icon="attach_file"></v-file-input>
+            <v-file-input label="Add Photo" v-model="post.photo" prepend-icon="" append-icon="attach_file" clearable clear-icon="clear"></v-file-input>
             <div class="navigate text-right">
                 <v-btn color="primary" @click="$emit('goToNext', post)">Next</v-btn>
             </div>
@@ -35,10 +35,10 @@
             }
         },
         created() {
-            this.loadData();
+            this.loadFormData();
         },
         methods: {
-            loadData() {
+            loadFormData() {
                 Object.keys(this.post).forEach((key) => this.post[key] = this.member[key]);
             }
         }

@@ -23,4 +23,6 @@ Route::namespace('Api')->group(function () {
     Route::post('/members/{id}', 'MembersController@update');
     Route::get('/members', 'MembersController@index');
     Route::get('/members/{id}', 'MembersController@getById');
+
+    Route::get('/countries', 'CountriesController@index');
 });

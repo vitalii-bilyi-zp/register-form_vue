@@ -1913,8 +1913,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-the-mask */ "./node_modules/vue-the-mask/dist/vue-the-mask.js");
-/* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_the_mask__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-the-mask */ "./node_modules/vue-the-mask/dist/vue-the-mask.js");
+/* harmony import */ var vue_the_mask__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_the_mask__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -1957,10 +1959,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "PersonalTab",
   directives: {
-    mask: vue_the_mask__WEBPACK_IMPORTED_MODULE_0__["mask"]
+    mask: vue_the_mask__WEBPACK_IMPORTED_MODULE_1__["mask"]
   },
   data: function data() {
     return {
@@ -1974,13 +1977,7 @@ __webpack_require__.r(__webpack_exports__);
         phone: null,
         email: null
       },
-      countries: [{
-        id: 1,
-        name: 'United States'
-      }, {
-        id: 2,
-        name: 'Ukraine'
-      }]
+      countries: []
     };
   },
   computed: {
@@ -1992,14 +1989,25 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.loadData();
+    this.loadCountries();
+    this.loadFormData();
   },
   methods: {
-    loadData: function loadData() {
+    loadCountries: function loadCountries() {
       var _this = this;
 
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/countries").then(function (response) {
+        console.log(response);
+        _this.countries = response.data;
+      })["catch"](function (error) {
+        console.log(error.response);
+      });
+    },
+    loadFormData: function loadFormData() {
+      var _this2 = this;
+
       Object.keys(this.post).forEach(function (key) {
-        return _this.post[key] = _this.member[key];
+        return _this2.post[key] = _this2.member[key];
       });
     }
   }
@@ -2090,10 +2098,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.loadData();
+    this.loadFormData();
   },
   methods: {
-    loadData: function loadData() {
+    loadFormData: function loadFormData() {
       var _this = this;
 
       Object.keys(this.post).forEach(function (key) {
@@ -2415,7 +2423,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.table_members th[data-v-15134fcd] {\n    font-size: 1rem;\n}\n.table_members th[data-v-15134fcd], .table_members td[data-v-15134fcd] {\n    text-align: center;\n    word-break: break-word;\n}\n.thead_dark th[data-v-15134fcd] {\n    color: #fff!important;\n    background-color: #343a40;\n    border-color: #454d55;\n}\n.member-photo[data-v-15134fcd] {\n    background-color: #1976d2;\n    border: .25rem solid #efefef;\n}\n", ""]);
+exports.push([module.i, "\n.table_members th[data-v-15134fcd] {\n    font-size: 1rem;\n}\n.table_members th[data-v-15134fcd], .table_members td[data-v-15134fcd] {\n    text-align: center;\n    word-break: break-word;\n}\n.thead_dark th[data-v-15134fcd] {\n    color: #fff!important;\n    background-color: #343a40;\n    border-color: #454d55;\n}\n.member-photo[data-v-15134fcd] {\n    width: 90px!important;\n    height: 90px!important;\n    border: .25rem solid #efefef;\n    background-color: #1976d2;\n    overflow: hidden;\n}\n.member-photo img[data-v-15134fcd] {\n    width: 100%;\n    height: auto;\n    min-height: 100%;\n}\n", ""]);
 
 // exports
 
@@ -21154,7 +21162,7 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("v-select", {
+          _c("v-autocomplete", {
             attrs: {
               label: "Country",
               items: _vm.countries,
@@ -21392,7 +21400,9 @@ var render = function() {
             attrs: {
               label: "Add Photo",
               "prepend-icon": "",
-              "append-icon": "attach_file"
+              "append-icon": "attach_file",
+              clearable: "",
+              "clear-icon": "clear"
             },
             model: {
               value: _vm.post.photo,
@@ -21623,10 +21633,7 @@ var render = function() {
                               [
                                 _c(
                                   "v-avatar",
-                                  {
-                                    staticClass: "member-photo",
-                                    attrs: { size: "90" }
-                                  },
+                                  { staticClass: "member-photo" },
                                   [
                                     member.photo
                                       ? _c("img", {
@@ -74975,8 +74982,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\projects\register-form_vue\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\projects\register-form_vue\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Vitalik\Desktop\register-form_vue\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Vitalik\Desktop\register-form_vue\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

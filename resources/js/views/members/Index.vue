@@ -17,7 +17,7 @@
                         </tr>
                         <tr v-else v-for="member in members.data" :key="member.id">
                             <td class="pt-2 pb-2">
-                                <v-avatar class="member-photo" size="90">
+                                <v-avatar class="member-photo">
                                     <img v-if="member.photo" :src="member.photo" alt="member photo">
                                     <v-icon v-else dark x-large>account_circle</v-icon>
                                 </v-avatar
@@ -89,7 +89,15 @@
         border-color: #454d55;
     }
     .member-photo {
-        background-color: #1976d2;
+        width: 90px!important;
+        height: 90px!important;
         border: .25rem solid #efefef;
+        background-color: #1976d2;
+        overflow: hidden;
+    }
+    .member-photo img {
+        width: 100%;
+        height: auto;
+        min-height: 100%;
     }
 </style>
